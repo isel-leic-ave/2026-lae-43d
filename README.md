@@ -1,8 +1,9 @@
-# Languages and Managed Runtimes 2026
-
-* [Lessons](https://github.com/isel-leic-ave/2026-lae-41d-42d/wiki/lessons)
-* [Evaluation _em português_](https://github.com/isel-leic-ave/2026-lae-41d-42d/wiki/evaluation)
-* [Bibliography and Tools](https://github.com/isel-leic-ave/2026-lae-41d-42d/wiki/bibliography)
+* Github Classroom for Labs and Project submission:
+  * Individual 43d - https://classroom.github.com/a/uXfvAMBJ
+* [Slack](https://join.slack.com/t/isel-leic-lae/shared_invite/zt-3qrppkned-c2VFCgQIapZLGUBFlcXzjg) - Use your ISEL email address (e.g. a87956@alunos.isel.pt) and join the channel of your classroom (e.g. #2026-leic-43d-falcao)
+* [LessonsSummary](../../wiki/LessonsSummary)
+* [Evaluation _em português_](../../wiki/Evaluation)
+* [Bibliography and Tools](../../wiki/Bibliography)
 
 
 <table width="100%">
