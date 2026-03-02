@@ -1,0 +1,37 @@
+Compiled from "RectangleJava.java"
+class RectangleJava {
+  private final int height;
+
+  private int width;
+
+  public RectangleJava(int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #7                  // Field height:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #13                 // Field width:I
+      14: return
+
+  public int getHeight();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field height:I
+       4: ireturn
+
+  public int getWidth();
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field width:I
+       4: ireturn
+
+  public void setWidth(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #13                 // Field width:I
+       5: return
+}

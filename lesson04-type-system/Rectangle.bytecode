@@ -1,0 +1,10 @@
+Compiled from "Rectangle.kt"
+public final class Rectangle {
+  private final int height;
+  private int width;
+  public Rectangle(int, int);
+  public final int getWidth();
+  public final void setWidth(int);
+  public final int getArea();
+  public java.lang.String toString();
+}
