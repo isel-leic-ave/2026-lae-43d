@@ -11,4 +11,6 @@ plugins {
 }
 
 rootProject.name = "lae43d"
-//include("app")
+include("lesson08-reflect:reflect-java")
+include("lesson09-reflect-kotlin")
+include("lesson10-annotations")
