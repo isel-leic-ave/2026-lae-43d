@@ -1,0 +1,25 @@
+Compiled from "App.kt"
+public final class pt.isel.bytecode.Sum {
+  private int count;
+
+  public pt.isel.bytecode.Sum(int);
+    Code:
+       0: aload_0
+       1: invokespecial #9                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #13                 // Field count:I
+       9: return
+
+  public final int add(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #13                 // Field count:I
+       5: iload_1
+       6: iadd
+       7: putfield      #13                 // Field count:I
+      10: aload_0
+      11: getfield      #13                 // Field count:I
+      14: ireturn
+}

@@ -1,0 +1,120 @@
+Classfile /Users/luisfalcao/Cloud Drives/NAS-LF/ISEL/Disciplinas/2025_2026/2025-2026VerLAE/Repositories/2026-lae-43d-LF/lesson15-bytecode&class-file-api/build/classes/kotlin/main/pt/isel/bytecode/AppKt.class
+  Last modified Apr 24, 2026; size 777 bytes
+  SHA-256 checksum 5034888cd57cb8a4b9f16134f7f6f7b605daf3777c08437218f78082a1403e8e
+  Compiled from "App.kt"
+public final class pt.isel.bytecode.AppKt
+  minor version: 0
+  major version: 66
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #2                          // pt/isel/bytecode/AppKt
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 3, attributes: 2
+Constant pool:
+   #1 = Utf8               pt/isel/bytecode/AppKt
+   #2 = Class              #1             // pt/isel/bytecode/AppKt
+   #3 = Utf8               java/lang/Object
+   #4 = Class              #3             // java/lang/Object
+   #5 = Utf8               magnitude
+   #6 = Utf8               (FF)F
+   #7 = Utf8               java/lang/Math
+   #8 = Class              #7             // java/lang/Math
+   #9 = Utf8               sqrt
+  #10 = Utf8               (D)D
+  #11 = NameAndType        #9:#10         // sqrt:(D)D
+  #12 = Methodref          #8.#11         // java/lang/Math.sqrt:(D)D
+  #13 = Utf8               res
+  #14 = Utf8               F
+  #15 = Utf8               x
+  #16 = Utf8               y
+  #17 = Utf8               main
+  #18 = Utf8               ()V
+  #19 = Float              3.0f
+  #20 = NameAndType        #5:#6          // magnitude:(FF)F
+  #21 = Methodref          #2.#20         // pt/isel/bytecode/AppKt.magnitude:(FF)F
+  #22 = Utf8               ([Ljava/lang/String;)V
+  #23 = NameAndType        #17:#18        // main:()V
+  #24 = Methodref          #2.#23         // pt/isel/bytecode/AppKt.main:()V
+  #25 = Utf8               args
+  #26 = Utf8               [Ljava/lang/String;
+  #27 = Utf8               Lkotlin/Metadata;
+  #28 = Utf8               mv
+  #29 = Integer            2
+  #30 = Integer            0
+  #31 = Utf8               k
+  #32 = Utf8               xi
+  #33 = Integer            48
+  #34 = Utf8               d1
+  #35 = Utf8               \u0000\u0010\n\u0000\n\u0002\u0010\u0007\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0000\u001a\u0016\u0010\u0000\u001a\u00020\u00012\u0006\u0010\u0002\u001a\u00020\u00012\u0006\u0010\u0003\u001a\u00020\u0001\u001a\u0006\u0010\u0004\u001a\u00020\u0005¨\u0006\u0006
+  #36 = Utf8               d2
+  #37 = Utf8
+  #38 = Utf8               lesson15-bytecode&class-file-api
+  #39 = Utf8               App.kt
+  #40 = Utf8               Code
+  #41 = Utf8               LineNumberTable
+  #42 = Utf8               LocalVariableTable
+  #43 = Utf8               SourceFile
+  #44 = Utf8               RuntimeVisibleAnnotations
+{
+  public static final float magnitude(float, float);
+    descriptor: (FF)F
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=3, args_size=2
+         0: fload_0
+         1: fload_0
+         2: fmul
+         3: fload_1
+         4: fload_1
+         5: fmul
+         6: fadd
+         7: f2d
+         8: invokestatic  #12                 // Method java/lang/Math.sqrt:(D)D
+        11: d2f
+        12: fstore_2
+        13: fload_2
+        14: freturn
+      LineNumberTable:
+        line 6: 0
+        line 6: 12
+        line 7: 13
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           13       2     2   res   F
+            0      15     0     x   F
+            0      15     1     y   F
+
+  public static final void main();
+    descriptor: ()V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=2, locals=0, args_size=0
+         0: fconst_2
+         1: ldc           #19                 // float 3.0f
+         3: invokestatic  #21                 // Method magnitude:(FF)F
+         6: pop
+         7: return
+      LineNumberTable:
+        line 20: 0
+        line 21: 7
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x1009) ACC_PUBLIC, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: invokestatic  #24                 // Method main:()V
+         3: return
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       4     0  args   [Ljava/lang/String;
+}
+SourceFile: "App.kt"
+RuntimeVisibleAnnotations:
+  0: #27(#28=[I#29,I#29,I#30],#31=I#29,#32=I#33,#34=[s#35],#36=[s#5,s#37,s#15,s#16,s#17,s#37,s#38])
+    kotlin.Metadata(
+      mv=[2,2,0]
+      k=2
+      xi=48
+      d1=["\u0000\u0010\n\u0000\n\u0002\u0010\u0007\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0000\u001a\u0016\u0010\u0000\u001a\u00020\u00012\u0006\u0010\u0002\u001a\u00020\u00012\u0006\u0010\u0003\u001a\u00020\u0001\u001a\u0006\u0010\u0004\u001a\u00020\u0005¨\u0006\u0006"]
+      d2=["magnitude","","x","y","main","","lesson15-bytecode&class-file-api"]
+    )
