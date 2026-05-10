@@ -18,7 +18,7 @@ annotation class AlternativeName(val name: String)
 @Target(AnnotationTarget.PROPERTY)
 annotation class MapTo(val destName: String)
 
-class MapperReflection(private val srcType: KClass<*>, private val dstType: KClass<*>) {
+class MapperReflection<T : Any, R : Any>(private val srcType: KClass<T>, private val dstType: KClass<R>) : Mapper<T, R> {
     val primaryConstructor = dstType.primaryConstructor!!
     val parameterToProp: Map<KParameter, (Any) -> Any?> =
         primaryConstructor.parameters.associateWith { parameter ->
@@ -26,7 +26,7 @@ class MapperReflection(private val srcType: KClass<*>, private val dstType: KCla
             return@associateWith getParameterFunctionGetterValue(prop, parameter)
         }
 
-    fun mapTo(src: Any): Any {
+    override fun mapFrom(src: T): R {
         val argumentsMap: Map<KParameter, Any?> =
             parameterToProp.entries.associate { (param, propValueGetter) ->
                 val obj = propValueGetter(src)
@@ -44,7 +44,7 @@ class MapperReflection(private val srcType: KClass<*>, private val dstType: KCla
         val propValue = propSrc.getter!!.call(src)
         val mapper = MapperReflection(propType, paramType)
 
-        return if(propValue == null) propValue else mapper.mapTo(propValue)
+        return if(propValue == null) propValue else null//mapper.mapFrom(propValue)
     }
 
     private fun getParameterFunctionGetterValue(propSrc: KProperty<*>, paramDest: KParameter): (src: Any) -> Any? {
@@ -56,7 +56,7 @@ class MapperReflection(private val srcType: KClass<*>, private val dstType: KCla
         val mapper = MapperReflection(propType, paramType)
         return { src: Any ->
             val propValue = propSrc.getter.call(src)
-            if(propValue == null) propValue else mapper.mapTo(propValue)
+            if(propValue == null) propValue else null//mapper.mapFrom(propValue)
         }
     }
 
@@ -73,47 +73,6 @@ class MapperReflection(private val srcType: KClass<*>, private val dstType: KCla
     }
 }
 
-
-
-fun Any.mapTo(dstType: KClass<*>): Any {
-    val src = this
-    // Obtain the source type KClass representative
-    val srcType = this::class
-    val primaryConstructor = dstType.primaryConstructor!!
-    // Para cada parâmetro do construtor primário, obter o valor da
-    // propriedade com o mesmo nome no objeto src
-
-    // For each primary constructor parameter, obtain the value of the
-    // property with the same name in src object
-    var argumentsMap: Map<KParameter, Any?> =
-        primaryConstructor.parameters.associateWith { parameter ->
-            val propSrc: KProperty<*>? = srcType.memberProperties.find { property ->
-                property.returnType
-                if (property.name == parameter.name)
-                    return@find true
-                val mapToAnnotation = property.findAnnotation<AlternativeName>()
-                if (mapToAnnotation == null)
-                    return@find false
-                return@find mapToAnnotation.name == parameter.name
-
-
-            } as KProperty<*>?
-            // Goal: return the value corresponding to the parameter argument
-            return@associateWith getValue(propSrc, parameter, src)
-        }
-    // Obtain the primary constructor for the destination type and call it with all the
-    // arguments in argumentsMap
-
-    return primaryConstructor.callBy(argumentsMap)
-}
-
-private fun getValue(propSrc: KProperty<*>?, paramDest: KParameter, src: Any): Any? {
-    val propValue = propSrc!!.call(src)
-    if(propSrc.returnType == paramDest.type)
-        return propValue
-
-    return propValue?.mapTo(paramDest.type.classifier as KClass<*>)
-}
 
 
 

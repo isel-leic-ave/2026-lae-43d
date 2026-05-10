@@ -2,16 +2,16 @@ package pt.isel
 
 import java.io.File
 import java.lang.classfile.ClassFile.*
-import java.lang.classfile.Interfaces
 import java.lang.classfile.Interfaces.*
-import java.lang.constant.ClassDesc
-import java.lang.constant.ConstantDesc
-import java.lang.constant.ConstantDescs
-import java.lang.constant.ConstantDescs.*
+import java.lang.constant.ClassDesc.of
+import java.lang.constant.ConstantDescs.CD_Object
+import java.lang.constant.ConstantDescs.CD_int
+import java.lang.constant.ConstantDescs.CD_void
+import java.lang.constant.ConstantDescs.INIT_NAME
+import java.lang.constant.ConstantDescs.MTD_void
 import java.lang.constant.MethodTypeDesc
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
-import kotlin.reflect.full.declaredFunctions
 
 /*
  public final class pt.isel.Bar {
@@ -41,10 +41,10 @@ interface IFoo {
 fun buildClassBar() {
     val className = "pt.isel.Bar"
     // val ifooDesc = ClassDesc("pt.isel.IFoo")
-    val ifooDesc = ClassDesc.of(IFoo::class.qualifiedName)
+    val ifooDesc = of(IFoo::class.qualifiedName)
     val bytes: ByteArray =
         of()
-            .build(ClassDesc.of(className)) { clb ->
+            .build(of(className)) { clb ->
             clb
                 .withFlags(ACC_PUBLIC or ACC_FINAL)
                 .withInterfaces(ofSymbols(ifooDesc).interfaces())
@@ -125,9 +125,9 @@ private final int nr;
  */
 fun buildCounter() {
     val className = "pt.isel.Counter"
-    val sum = ClassDesc.of(Sum::class.qualifiedName)
+    val sum = of(Sum::class.qualifiedName)
     val bytes: ByteArray =
-        of().build(ClassDesc.of(className)) { clb ->
+        of().build(of(className)) { clb ->
             clb
                 .withFlags(ACC_PUBLIC or ACC_FINAL)
                 .withInterfaces(ofSymbols(sum).interfaces())
@@ -145,7 +145,7 @@ fun buildCounter() {
                             .invokespecial(CD_Object, INIT_NAME, MTD_void)
                             .aload(0)
                             .iload(1)
-                            .putfield(ClassDesc.of(className), "nr", CD_int)
+                            .putfield(of(className), "nr", CD_int)
                             .return_()
                     }
                 }.withMethod("add", MethodTypeDesc.of(CD_int, CD_int), ACC_PUBLIC) { mb ->
@@ -153,12 +153,12 @@ fun buildCounter() {
                         cob
                             .aload(0)
                             .dup()
-                            .getfield(ClassDesc.of(className), "nr", CD_int)
+                            .getfield(of(className), "nr", CD_int)
                             .iload(1)
                             .iadd()
-                            .putfield(ClassDesc.of(className), "nr", CD_int)
+                            .putfield(of(className), "nr", CD_int)
                             .aload(0)
-                            .getfield(ClassDesc.of(className), "nr", CD_int)
+                            .getfield(of(className), "nr", CD_int)
                             .ireturn()
                     }
                 }
