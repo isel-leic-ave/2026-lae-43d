@@ -1,4 +1,9 @@
-package pt.isel.lae41n
+package pt.isel.lae43d
+
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.sequences.SequenceScope
 
 
 /**
@@ -24,9 +29,35 @@ fun <T> Sequence<T>.lazyFilterGenerator(predicate: (T) -> Boolean): Sequence<T> 
             }
         }
     }
-
-
+//    return sequence { mySequenceGenerator(this@lazyFilterGenerator, predicate) }
 }
+
+//fun <T>mySequenceGenerator(upstream: Sequence<T>, predicate: (T) -> Boolean): suspend SequenceScope<T>.() -> Unit {
+//
+//    fun SequenceScope<T>.myIternalSequenceGenerator(continuation: Continuation<Unit>): Any {
+//        val iter = upstream.iterator()
+//        var nextValue = iter.next()
+//        val yieldCps = ::yield as (Result<T>, Continuation<T>) -> Unit
+//
+//        val myContinuation = object : Continuation<T> {
+//            override val context: CoroutineContext = EmptyCoroutineContext
+//            override fun resumeWith(result: Result<T>) {
+//                if(iter.hasNext()) {
+//                    yieldCps(Result.success(iter.next()), myContinuation)
+//
+//                }
+//            }
+//        }
+//
+//        yieldCps(Result.success(nextValue), myContinuation)
+//
+//    }
+
+//    val seqGenerator = SequenceScope<T>::myIternalSequenceGenerator as (suspend SequenceScope<T>.() -> Unit)
+//}
+
+
+
 //
 ///**
 // * Returns a sequence containing only distinct elements from the given collection.

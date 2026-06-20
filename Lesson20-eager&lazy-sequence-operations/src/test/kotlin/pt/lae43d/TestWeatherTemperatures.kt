@@ -1,8 +1,9 @@
-package pt.isel
+package pt.lae43d
 
-import pt.isel.lae41n.eagerDistinct
-import pt.isel.lae41n.eagerFilter
-import pt.isel.lae41n.eagerMap
+import pt.isel.lae43d.eagerDistinct
+import pt.isel.lae43d.eagerFilter
+import pt.isel.lae43d.eagerMap
+import pt.isel.lae43d.lazyFilter
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

@@ -1,8 +1,8 @@
-package pt.isel
+package pt.lae43d
 
-import pt.isel.lae41n.lazyCollapse
-import pt.isel.lae41n.lazyConcat
-import pt.isel.lae41n.lazyZip
+import pt.isel.lae43d.lazyCollapse
+import pt.isel.lae43d.lazyConcat
+import pt.isel.lae43d.lazyZip
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 
