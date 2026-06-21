@@ -4,7 +4,7 @@ package pt.isel
  * Returns a list containing the results of applying the given
  * transform function to each element in the original collection.
  */
-fun <T, R> Iterable<T>.eagerMap(transform: (T) -> R): List<R> {
+fun <T, R> Iterable<T>.eagerMap(transform: (T) -> R): Iterable<R> {
     val destination = mutableListOf<R>()
     for (item in this) {
         destination.add(transform(item))
@@ -12,11 +12,21 @@ fun <T, R> Iterable<T>.eagerMap(transform: (T) -> R): List<R> {
     return destination
 }
 
+// Eager: T1T2T3 -> MapEager -> Iterable -> Iterator -> R1R2R3
+// Lazy: T1T2T3 -> MapLazy -> Iterable
+
+
 /**
  * Returns a list containing only elements matching the given predicate.
  */
 fun <T> Iterable<T>.eagerFilter(predicate: (T) -> Boolean): Iterable<T> {
-    TODO()
+    val destination = mutableListOf<T>()
+    for(element in this) {
+        if(predicate(element)) {
+            destination.add(element)
+        }
+    }
+    return destination
 }
 
 /**
@@ -35,9 +45,22 @@ fun <T> Iterable<T>.eagerDistinct(): Iterable<T> {
  * transform function to each element in the original collection.
  */
 fun <T, R> Sequence<T>.lazyMap(transform: (T) -> R): Sequence<R> {
-    TODO()
-}
+    val upstreamSeq = this
+    return object: Sequence<R> {
+        override fun iterator(): Iterator<R> {
+            var upstreamIter: Iterator<T> = upstreamSeq.iterator()
+            return object: Iterator<R> {
+                override fun next(): R {
+                    return transform(upstreamIter.next())
+                }
 
+                override fun hasNext(): Boolean {
+                    return upstreamIter.hasNext()
+                }
+            }
+        }
+    }
+}
 /**
  * Returns a sequence containing only elements matching the given [predicate].
  * Simplistic implementation that does not work with nullable items.
